@@ -19,13 +19,20 @@ def ensure_master_demographics():
 
 
 def download_file(remote_path, dest_dir):
-    subprocess.run([
-        "kaggle", "datasets", "download",
-        "-d", DATASET,
-        "-f", remote_path,
-        "-p", str(dest_dir),
-        "--unzip"
-    ])
+    subprocess.run(
+        [
+            "kaggle",
+            "datasets",
+            "download",
+            "-d",
+            DATASET,
+            "-f",
+            remote_path,
+            "-p",
+            str(dest_dir),
+            "--unzip",
+        ]
+    )
 
 
 def load_used_patients():
@@ -44,13 +51,21 @@ def select_patients(rows, used, count_true, count_false):
     def patient_key(r):
         return f"{r['BidsFolder']}_ses-{r['SessionID']}"
 
-    available_true = [r for r in rows if r["Cognitive_Impairment"] == "True" and patient_key(r) not in used]
-    available_false = [r for r in rows if r["Cognitive_Impairment"] == "False" and patient_key(r) not in used]
+    available_true = [
+        r for r in rows if r["Cognitive_Impairment"] == "True" and patient_key(r) not in used
+    ]
+    available_false = [
+        r for r in rows if r["Cognitive_Impairment"] == "False" and patient_key(r) not in used
+    ]
 
     if len(available_true) < count_true:
-        raise ValueError(f"Requested {count_true} True patients but only {len(available_true)} remain unused.")
+        raise ValueError(
+            f"Requested {count_true} True patients but only {len(available_true)} remain unused."
+        )
     if len(available_false) < count_false:
-        raise ValueError(f"Requested {count_false} False patients but only {len(available_false)} remain unused.")
+        raise ValueError(
+            f"Requested {count_false} False patients but only {len(available_false)} remain unused."
+        )
 
     return available_true[:count_true] + available_false[:count_false]
 
@@ -58,10 +73,13 @@ def select_patients(rows, used, count_true, count_false):
 def download_patients(selected, dest_dir):
     for i, row in enumerate(selected):
         site, sub, ses = row["SiteID"], row["BidsFolder"], row["SessionID"]
-        print(f"\n[{i+1}/{len(selected)}] {sub} session {ses} ({row['Cognitive_Impairment']})...")
+        print(f"\n[{i + 1}/{len(selected)}] {sub} session {ses} ({row['Cognitive_Impairment']})...")
         download_file(f"physiological_data/{site}/{sub}_ses-{ses}.edf", dest_dir)
         download_file(f"human_annotations/{site}/{sub}_ses-{ses}_expert_annotations.edf", dest_dir)
-        download_file(f"algorithmic_annotations/{site}/{sub}_ses-{ses}_caisr_annotations.edf", dest_dir)
+        download_file(
+            f"algorithmic_annotations/{site}/{sub}_ses-{ses}_caisr_annotations.edf", dest_dir
+        )
+        record_used_patients([f"{sub}_ses-{ses}"])
 
 
 def main():
@@ -85,8 +103,7 @@ def main():
 
     download_patients(selected, dest_dir)
 
-    keys = [f"{r['BidsFolder']}_ses-{r['SessionID']}" for r in selected]
-    record_used_patients(keys)
+    [f"{r['BidsFolder']}_ses-{r['SessionID']}" for r in selected]
 
     if args.split != "training":
         shutil.copy(MASTER_DEMOGRAPHICS, dest_dir / "demographics.csv")

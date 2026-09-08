@@ -1,11 +1,19 @@
 .DS_Store
-.idea/
+Thumbs.db
+Desktop.ini
 
+.idea/
 .vscode/*
+!.vscode/settings.json
 !.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
 
 __pycache__/
 *.py[cod]
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
 
 .venv/
 
@@ -15,5 +23,4 @@ outputs/
 scores.csv
 
 *.log
-
-.env
+.env*

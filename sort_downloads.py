@@ -1,6 +1,7 @@
-import sys
 import shutil
+import sys
 from pathlib import Path
+
 
 def sort_downloads(target_dir: Path):
     if not target_dir.exists():

@@ -1,0 +1,45 @@
+{
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.wordWrap": "on",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.exclude": {
+    "**/.mypy_cache": true,
+    "**/.pytest_cache": true,
+    "**/.ruff_cache": true,
+    "**/__pycache__": true
+  },
+  "files.readonlyInclude": {
+    "**/Dockerfile": true,
+    "**/THIRD-PARTY-LICENSES/**": true,
+    "**/channel_table.csv": true,
+    "**/create_labels.py": true,
+    "**/evaluate_model.py": true,
+    "**/helper_code.py": true,
+    "**/run_model.py": true,
+    "**/train_model.py": true
+  },
+  "search.exclude": {
+    "**/.mypy_cache": true,
+    "**/.pytest_cache": true,
+    "**/.ruff_cache": true,
+    "**/.venv": true,
+    "**/__pycache__": true,
+    "**/data": true,
+    "**/outputs": true,
+    "**/uv.lock": true
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.rulers": [100],
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+  "[yaml]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  }
+}

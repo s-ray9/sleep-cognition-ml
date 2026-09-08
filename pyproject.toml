@@ -1,0 +1,45 @@
+[project]
+name = "sleep-cognition-ml"
+version = "0.1.0"
+description = "Feature-importance reliability analysis on the 2026 PhysioNet Challenge sleep dataset"
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "s_ray9", email = "74608860+s-ray9@users.noreply.github.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "edfio>=0.4.16",
+    "joblib>=1.6.0",
+    "kaggle>=2.2.4",
+    "numpy>=2.5.2",
+    "pandas>=3.0.5",
+    "scikit-learn>=1.9.0",
+    "scipy>=1.18.1",
+    "tqdm>=4.70.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.6",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+extend-exclude = [
+    "**/Dockerfile",
+    "**/THIRD-PARTY-LICENSES/**",
+    "**/channel_table.csv",
+    "**/create_labels.py",
+    "**/evaluate_model.py",
+    "**/helper_code.py",
+    "**/run_model.py",
+    "**/train_model.py"
+]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
