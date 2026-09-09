@@ -14,7 +14,7 @@ The open-source repository for an independent research project investigating fea
 
 This project tests whether feature-importance rankings from machine learning models are reliable on small, imbalanced clinical datasets. It uses the 2026 PhysioNet Challenge sleep dataset as a test case. The analysis code is built on the Challenge's official example and scoring scripts.
 
-## 📊 Results
+## Results
 
 ### Model Performance
 
@@ -39,7 +39,7 @@ Mean decrease in impurity; ± indicates variability across 20 random forest seed
 | Respiratory zero-crossing rate | 0.0431 ± 0.0122 | Marginal |
 | All other 72 features | ≤ 0.0431, std ≈ mean | Unreliable |
 
-## 🛠️ Development
+## Development
 
 ### Local Setup
 
@@ -81,7 +81,7 @@ uv run python train_model.py -d data/training -m model -v
 
 *Note: this trains a single model via the official Challenge pipeline. This repository implements separate scripts for cross-validated evaluation, multi-seed feature-importance analysis, and cross-architecture comparison.*
 
-## 🗂️ Project Structure
+## Project Structure
 
 ### Challenge Code
 
@@ -116,7 +116,7 @@ Scripts use constants defined at the top of each file in place of command-line a
 | `rank_features_multiseed.py` | Feature importance averaged across 20 random seeds | — |
 | `sort_downloads.py` | Sorts downloaded files into the Challenge-standard directory structure | `<target_directory>` |
 
-## 📄 License
+## License
 
 Distributed under the **MIT License**. See [LICENSE](LICENSE) for more information.
 
