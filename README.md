@@ -26,7 +26,7 @@ Cross-validated AUROC (area under the ROC curve); 0.5 = random guessing, 1.0 = p
 | All features (corrected) | 158 | Random forest | 0.737 ± 0.082 |
 | Top-10 features (corrected) | 1,092<sup>a</sup> | Logistic regression, random forest, gradient boosting | 0.788–0.800 |
 
-<sup>a</sup> *11 of 1,103 available patients excluded due to missing annotation files.*
+<sup>a</sup>*11 of 1,103 available patients excluded due to missing annotation files.*
 
 #### Feature importance
 
@@ -56,19 +56,25 @@ uv sync
 
 This project uses overnight polysomnography recordings from the [George B. Moody PhysioNet Challenge 2026](https://physionetchallenges.org/2026/) dataset.
 
+#### Data Preparation
+
 ```bash
-# Download the full available training set (79 True, 934 False)
+# Download the imbalanced training cohort (79 True, 934 False)
 uv run python download_patients.py --split training --true 79 --false 934
 
-# Sort raw downloads into the Challenge-standard directory structure
+# Sort training downloads into the Challenge-standard directory structure
 uv run python sort_downloads.py data/training
 
-# Download a small holdout set for evaluation
+# Download a balanced holdout cohort (5 True, 5 False)
 uv run python download_patients.py --split holdout --true 5 --false 5
 
 # Sort holdout downloads into the same directory structure
 uv run python sort_downloads.py data/holdout
+```
 
+#### Model Training
+
+```bash
 # Train the model (200-tree random forest, class-weighted for imbalance)
 uv run python train_model.py -d data/training -m model -v
 ```
