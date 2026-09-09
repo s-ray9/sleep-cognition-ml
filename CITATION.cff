@@ -1,20 +1,22 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite it as below."
-title: "sleep-cognition-ml"
-abstract: "An investigation into feature-importance reliability in machine learning models trained on small, severely imbalanced medical datasets. Using the 2026 PhysioNet Challenge sleep dataset, this project demonstrates how naive modelling can produce misleadingly high accuracy despite near-random predictive power, and how single-run feature-importance analysis can misidentify unstable features as significant. Multi-seed validation across three model architectures identifies age and BMI as the only features with importance reliably distinguishable from noise, contrasting with several physiological markers commonly cited in the literature."
+abstract: "An investigation into feature-importance reliability in machine learning models trained on small, severely imbalanced clinical datasets. Using the 2026 PhysioNet Challenge sleep dataset, this project demonstrates how naive modelling can produce misleadingly high accuracy despite near-random predictive power, and how single-run feature-importance analysis can misidentify unstable features as significant. Multi-seed validation across three model architectures identifies age and BMI as the only features with importance reliably distinguishable from noise, contrasting with several physiological markers commonly cited in the literature."
 authors:
-    - family-names: "Yang"
-      given-names: "Xinrui"
-      website: "https://s-ray9.Zvercel.app"
+  - family-names: "Yang"
+    given-names: "Xinrui"
+title: "sleep-cognition-ml"
+type: software
+version: 0.1.0
+date-released: 2026-08-27
 license: "MIT"
-repository-code: "https://github.com/s-ray9/sleep-cognition-ml"
+url: "https://github.com"
 keywords:
-    - "machine-learning"
-    - "feature-importance"
-    - "class-imbalance"
-    - "cross-validation"
-    - "reproducibility"
-    - "medical-machine-learning"
-    - "polysomnography"
-    - "random-forest"
-    - "scikit-learn"
+  - "machine-learning"
+  - "feature-importance"
+  - "class-imbalance"
+  - "cross-validation"
+  - "reproducibility"
+  - "clinical-machine-learning"
+  - "polysomnography"
+  - "random-forest"
+  - "scikit-learn"

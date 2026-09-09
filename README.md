@@ -14,9 +14,9 @@ The open-source repository for an independent research project investigating fea
 
 This project tests whether feature-importance rankings from machine learning models are reliable on small, imbalanced clinical datasets. It uses the 2026 PhysioNet Challenge sleep dataset as a test case. The analysis code is built on the Challenge's official example and scoring scripts.
 
-### 📊 Results
+## 📊 Results
 
-#### Model performance
+### Model Performance
 
 Cross-validated AUROC (area under the ROC curve); 0.5 = random guessing, 1.0 = perfect separation. ± indicates variability across cross-validation folds for a single model; ranges indicate the spread across multiple model types.
 
@@ -28,7 +28,7 @@ Cross-validated AUROC (area under the ROC curve); 0.5 = random guessing, 1.0 = p
 
 <sup>a</sup>*11 of 1,103 available patients excluded due to missing annotation files.*
 
-#### Feature importance
+### Feature Importance
 
 Mean decrease in impurity; ± indicates variability across 20 random forest seeds trained on the same data (n = 1,092).
 
@@ -81,6 +81,43 @@ uv run python train_model.py -d data/training -m model -v
 
 *Note: this trains a single model via the official Challenge pipeline. This repository implements separate scripts for cross-validated evaluation, multi-seed feature-importance analysis, and cross-architecture comparison.*
 
+## 🗂️ Project Structure
+
+### Challenge Code
+
+#### Unmodified
+
+| File | Purpose | Arguments |
+|---|---|---|
+| `evaluate_model.py` | Scores predictions against labels | `-d <labels_file> -o <predictions_file> -p <prevalence_file>` |
+| `helper_code.py` | Shared utilities used by the other files in this section | — |
+| `run_model.py` | Runs a trained model on new data | `-d <data_folder> -m <model_folder> -o <output_folder> -v` |
+| `train_model.py` | Trains a model | `-d <data_folder> -m <model_folder> -v` |
+
+#### Modified
+
+| File | Purpose | Arguments |
+|---|---|---|
+| `team_code.py` | Feature extraction and model definition | — |
+
+### Original Code
+
+Scripts use constants defined at the top of each file in place of command-line arguments where none are listed.
+
+| File | Purpose | Arguments |
+|---|---|---|
+| `check_patient_overlap.py` | Verifies no patient contributes multiple sessions across splits | — |
+| `compare_feature_subsets.py` | Cross-validated performance by feature subset size | — |
+| `compare_models.py` | Cross-validated performance and importance across three model architectures | — |
+| `download_patients.py` | Downloads patient data from Kaggle | `--split <training\|holdout> --true <n> --false <n>` |
+| `evaluate_methodology.py` | 5-fold cross-validated AUROC on the full feature set | — |
+| `experiment_utils.py` | Shared feature definitions and dataset loading | — |
+| `rank_features.py` | Single-run feature importance from a trained model | — |
+| `rank_features_multiseed.py` | Feature importance averaged across 20 random seeds | — |
+| `sort_downloads.py` | Sorts downloaded files into the Challenge-standard directory structure | `<target_directory>` |
+
 ## 📄 License
 
-Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+Distributed under the **MIT License**. See [LICENSE](LICENSE) for more information.
+
+Code retained from the Challenge repository (see [Project Structure](#project-structure)) remains under their original **BSD 3-Clause License**. See [PHYSIONET-CHALLENGE-LICENSE](THIRD-PARTY-LICENSES/PHYSIONET-CHALLENGE-LICENSE) for more information.

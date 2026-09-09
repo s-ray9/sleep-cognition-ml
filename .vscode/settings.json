@@ -2,8 +2,6 @@
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "file",
   "editor.wordWrap": "on",
-  "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true,
   "files.exclude": {
     "**/.mypy_cache": true,
     "**/.pytest_cache": true,

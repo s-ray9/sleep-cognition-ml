@@ -52,7 +52,8 @@ def main():
         scores = evaluate_subset(features, labels, feature_names, subset_features_list)
         n_features = len(subset_features_list) if subset_features_list else features.shape[1]
         print(
-            f"{subset_name:10s} ({n_features:2d} features): AUROC = {scores.mean():.3f} +/- {scores.std():.3f}"
+            f"{subset_name:10s} ({n_features:2d} features): "
+            f"AUROC = {scores.mean():.3f} +/- {scores.std():.3f}"
         )
 
 
