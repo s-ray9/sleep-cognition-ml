@@ -24,9 +24,9 @@ Cross-validated AUROC (area under the ROC curve); 0.5 = random guessing, 1.0 = p
 |---|---|---|---|
 | Baseline | 40 | Random forest | 0.504 |
 | All features (corrected) | 158 | Random forest | 0.737 ± 0.082 |
-| Top-10 features (corrected) | 1,092¹ | Logistic regression, random forest, gradient boosting | 0.788–0.800 |
+| Top-10 features (corrected) | 1,092<sup>a</sup> | Logistic regression, random forest, gradient boosting | 0.788–0.800 |
 
-¹ 11 of 1,103 available patients excluded due to missing annotation files.
+<sup>a</sup> *11 of 1,103 available patients excluded due to missing annotation files.*
 
 #### Feature importance
 
