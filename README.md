@@ -1,14 +1,21 @@
-<div align="center">
+<h1 align="center">Sleep Cognition ML</h1>
 
-# Sleep Cognition ML
-
+<p align="center">
 The open-source repository for an independent research project investigating feature reliability in machine learning prediction of cognitive impairment from sleep-derived physiological signals.
+</p>
 
-[![Python](https://img.shields.io/badge/Python-3.13-ffd43b?style=flat-square&logo=python&logoColor=white&labelColor=3776ab)](https://www.python.org/) [![Project Manager](https://img.shields.io/badge/Project_Manager-uv-de5fe9?style=flat-square&labelColor=24292e)](https://github.com/astral-sh/uv) [![License](https://img.shields.io/github/license/s-ray9/sleep-cognition-ml?style=flat-square&color=blue&label=License&labelColor=24292e)](LICENSE)
+<p align="center">
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.13-ffd43b?style=flat-square&logo=python&logoColor=white&labelColor=3776ab" alt="Python"></a>
+  <a href="https://github.com/astral-sh/uv"><img src="https://img.shields.io/badge/Project_Manager-uv-de5fe9?style=flat-square&labelColor=24292e" alt="Project Manager"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/s-ray9/sleep-cognition-ml?style=flat-square&color=blue&label=License&labelColor=24292e" alt="License"></a>
+</p>
 
-![scikit-learn](https://img.shields.io/badge/scikit--learn-f7931e?style=flat-square&logo=scikit-learn&logoColor=white) ![pandas](https://img.shields.io/badge/pandas-15045c?style=flat-square&logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/NumPy-4d77cf?style=flat-square&logo=numpy&logoColor=white) ![SciPy](https://img.shields.io/badge/SciPy-3776ab?style=flat-square&logo=scipy&logoColor=white)
-
-</div>
+<p align="center">
+  <img src="https://img.shields.io/badge/scikit--learn-f7931e?style=flat-square&logo=scikit-learn&logoColor=white" alt="scikit-learn">
+  <img src="https://img.shields.io/badge/pandas-15045c?style=flat-square&logo=pandas&logoColor=white" alt="pandas">
+  <img src="https://img.shields.io/badge/NumPy-4d77cf?style=flat-square&logo=numpy&logoColor=white" alt="NumPy">
+  <img src="https://img.shields.io/badge/SciPy-3776ab?style=flat-square&logo=scipy&logoColor=white" alt="SciPy">
+</p>
 
 ---
 
