@@ -1,3 +1,2 @@
-theme: jekyll-theme-cayman
-plugins:
-  - jekyll-readme-index
+theme: jekyll-theme-minimal
+title: "Sleep Cognition ML"

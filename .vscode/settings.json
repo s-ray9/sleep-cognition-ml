@@ -3,6 +3,7 @@
   "editor.formatOnSaveMode": "file",
   "editor.wordWrap": "on",
   "files.exclude": {
+    "**/.git": true,
     "**/.mypy_cache": true,
     "**/.pytest_cache": true,
     "**/.ruff_cache": true,
@@ -35,9 +36,5 @@
       "source.fixAll.ruff": "explicit",
       "source.organizeImports.ruff": "explicit"
     }
-  },
-  "[yaml]": {
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true
   }
 }

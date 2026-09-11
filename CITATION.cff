@@ -9,14 +9,17 @@ type: software
 version: 0.1.0
 date-released: 2026-08-27
 license: "MIT"
-url: "https://github.com"
+url: "https://github.com/s-ray9/sleep-cognition-ml"
+repository-code: "https://github.com/s-ray9/sleep-cognition-ml"
 keywords:
-  - "machine-learning"
-  - "feature-importance"
-  - "class-imbalance"
-  - "cross-validation"
-  - "reproducibility"
-  - "clinical-machine-learning"
-  - "polysomnography"
-  - "random-forest"
-  - "scikit-learn"
+  - sleep-research
+  - polysomnography
+  - cognitive-impairment
+  - clinical-machine-learning
+  - feature-importance
+  - explainable-ai
+  - reproducibility
+  - data-science
+  - python
+  - scikit-learn
+  - uv

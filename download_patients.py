@@ -13,7 +13,7 @@ MANIFEST_PATH = DATA_DIR / "used_patients.txt"
 
 def ensure_master_demographics():
     if not MASTER_DEMOGRAPHICS.exists():
-        print("demographics.csv not found — downloading it first...")
+        print("Downloading missing demographics.csv file...")
         (DATA_DIR / "training").mkdir(parents=True, exist_ok=True)
         download_file("demographics.csv", DATA_DIR / "training")
 
