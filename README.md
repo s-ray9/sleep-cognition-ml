@@ -1,3 +1,12 @@
+<div align="center">
+  <figure>
+    <img src="assets/banner.png" alt="Sleep Cognition ML" width="850">
+    <figcaption>
+      <i>Banner background photo by <a href="https://unsplash.com/@choys_">Conny Schneider</a> on <a href="https://unsplash.com">Unsplash</a>, edited for this project.</i>
+    </figcaption>
+  </figure>
+</div>
+
 <h1 align="center">Sleep Cognition ML</h1>
 
 <p align="center">
@@ -33,7 +42,7 @@ Cross-validated AUROC (area under the ROC curve); 0.5 = random guessing, 1.0 = p
 | All features (corrected) | 158 | Random forest | 0.737 ± 0.082 |
 | Top-10 features (corrected) | 1,092<sup>a</sup> | Logistic regression, random forest, gradient boosting | 0.788–0.800 |
 
-<sup>a</sup>*11 of 1,103 available patients excluded due to missing annotation files.*
+<sup>a</sup>*11 of 1,103 available patients were excluded due to missing annotation files.*
 
 ### Feature Importance
 
@@ -116,7 +125,7 @@ Scripts use constants defined at the top of each file in place of command-line a
 | `check_patient_overlap.py` | Verifies no patient contributes multiple sessions across splits | — |
 | `compare_feature_subsets.py` | Cross-validated performance by feature subset size | — |
 | `compare_models.py` | Cross-validated performance and importance across three model architectures | — |
-| `download_patients.py` | Downloads patient data from Kaggle | `--split <training\|holdout> --true <n> --false <n>` |
+| `download_patients.py` | Downloads patient data from Kaggle | `--split <training\|holdout> --true <n> --false <n> [--data-dir <dir>]` |
 | `evaluate_methodology.py` | 5-fold cross-validated AUROC on the full feature set | — |
 | `experiment_utils.py` | Shared feature definitions and dataset loading | — |
 | `rank_features.py` | Single-run feature importance from a trained model | — |
@@ -127,4 +136,4 @@ Scripts use constants defined at the top of each file in place of command-line a
 
 Distributed under the **MIT License**. See [LICENSE](LICENSE) for more information.
 
-Code retained from the Challenge repository (see [Project Structure](#project-structure)) remains under their original **BSD 3-Clause License**. See [PHYSIONET-CHALLENGE-LICENSE](THIRD-PARTY-LICENSES/PHYSIONET-CHALLENGE-LICENSE) for more information.
+Code retained from the Challenge repository (see [Challenge Code](#challenge-code)) remains under their original **BSD 3-Clause License**. See [PHYSIONET-CHALLENGE-LICENSE](THIRD-PARTY-LICENSES/PHYSIONET-CHALLENGE-LICENSE) for more information.
