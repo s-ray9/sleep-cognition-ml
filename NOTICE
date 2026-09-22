@@ -2,7 +2,7 @@
 
 The following unmodified files are provided by the George B. Moody PhysioNet
 Challenge 2026 and are redistributed under the terms of the BSD 3-Clause License
-located in THIRD-PARTY-LICENSES/PHYSIONET-CHALLENGE-LICENSE:
+located in [PHYSIONET-CHALLENGE-LICENSE](THIRD-PARTY-LICENSES/PHYSIONET-CHALLENGE-LICENSE):
 
 * channel_table.csv
 * create_labels.py
