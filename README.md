@@ -1,6 +1,6 @@
 <div align="center">
   <figure>
-    <img src="assets/banner.png" alt="Sleep Cognition ML" width="850">
+    <img src="assets/banner.png" alt="Sleep Cognition ML"><br>
     <figcaption>
       <i>Banner background photo by <a href="https://unsplash.com/@choys_">Conny Schneider</a> on <a href="https://unsplash.com">Unsplash</a>, edited for this project.</i>
     </figcaption>
@@ -136,4 +136,4 @@ Scripts use constants defined at the top of each file in place of command-line a
 
 Distributed under the **MIT License**. See [LICENSE](LICENSE) for more information.
 
-Code retained from the Challenge repository (see [Challenge Code](#challenge-code)) remains under their original **BSD 3-Clause License**. See [PHYSIONET-CHALLENGE-LICENSE](THIRD-PARTY-LICENSES/PHYSIONET-CHALLENGE-LICENSE) for more information.
+Code retained from the Challenge repository (see [Challenge Code](#challenge-code)) remains under its original **BSD 3-Clause License**. See [PHYSIONET-CHALLENGE-LICENSE](THIRD-PARTY-LICENSES/PHYSIONET-CHALLENGE-LICENSE) for more information.
