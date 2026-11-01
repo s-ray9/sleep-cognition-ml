@@ -1,139 +1,185 @@
-<div align="center">
-  <figure>
-    <img src="assets/banner.png" alt="Sleep Cognition ML"><br>
-    <figcaption>
-      <i>Banner background photo by <a href="https://unsplash.com/@choys_">Conny Schneider</a> on <a href="https://unsplash.com">Unsplash</a>, edited for this project.</i>
-    </figcaption>
-  </figure>
-</div>
+![s_ray9: systems developer, game developer.][banner]
 
-<h1 align="center">Sleep Cognition ML</h1>
+_Banner background photo by [Conny Schneider](https://unsplash.com/@choys_) on [Unsplash](https://unsplash.com), modified for this project._
 
-<p align="center">
-The open-source repository for an independent research project investigating feature reliability in machine learning prediction of cognitive impairment from sleep-derived physiological signals.
-</p>
+# Sleep Cognition ML
 
-<p align="center">
-  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.13-ffd43b?style=flat-square&logo=python&logoColor=white&labelColor=3776ab" alt="Python"></a>
-  <a href="https://github.com/astral-sh/uv"><img src="https://img.shields.io/badge/Project_Manager-uv-de5fe9?style=flat-square&labelColor=24292e" alt="Project Manager"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/s-ray9/sleep-cognition-ml?style=flat-square&color=blue&label=License&labelColor=24292e" alt="License"></a>
-</p>
+[![Demo][demo-badge]][demo] [![License][license-badge]][license]
 
-<p align="center">
-  <img src="https://img.shields.io/badge/scikit--learn-f7931e?style=flat-square&logo=scikit-learn&logoColor=white" alt="scikit-learn">
-  <img src="https://img.shields.io/badge/pandas-15045c?style=flat-square&logo=pandas&logoColor=white" alt="pandas">
-  <img src="https://img.shields.io/badge/NumPy-4d77cf?style=flat-square&logo=numpy&logoColor=white" alt="NumPy">
-  <img src="https://img.shields.io/badge/SciPy-3776ab?style=flat-square&logo=scipy&logoColor=white" alt="SciPy">
-</p>
+Independent research project testing how reliable feature-importance rankings are in machine learning models that predict cognitive impairment from sleep recordings.
 
----
+## Tech stack
 
-This project tests whether feature-importance rankings from machine learning models are reliable on small, imbalanced clinical datasets. It uses the 2026 PhysioNet Challenge sleep dataset as a test case. The analysis code is built on the Challenge's official example and scoring scripts.
+![Python][python-badge]
+![NumPy][numpy-badge]
+![pandas][pandas-badge]
+![SciPy][scipy-badge]
+![scikit-learn][scikit-learn-badge]
+![uv][uv-badge]
 
-## Results
+## Overview
 
-### Model Performance
+This project tests whether feature-importance rankings from machine learning models remain reliable on small, imbalanced clinical datasets. It uses the 2026 PhysioNet Challenge sleep dataset, which contains 1,103 patients and 84 positive cases, as a test case. A set of ten features predicted cognitive impairment consistently across three model types, with cross-validated AUROC between 0.79 and 0.80. The rankings of individual features changed with sample size and model type, and only age was consistently important.
 
-Cross-validated AUROC (area under the ROC curve); 0.5 = random guessing, 1.0 = perfect separation. ± indicates variability across cross-validation folds for a single model; ranges indicate the spread across multiple model types.
+## Getting started
 
-| Configuration | n | Model(s) | AUROC |
-|---|---|---|---|
-| Baseline | 40 | Random forest | 0.504 |
-| All features (corrected) | 158 | Random forest | 0.737 ± 0.082 |
-| Top-10 features (corrected) | 1,092<sup>a</sup> | Logistic regression, random forest, gradient boosting | 0.788–0.800 |
+### Prerequisites
 
-<sup>a</sup>*11 of 1,103 available patients were excluded due to missing annotation files.*
+- Git
+- Python (v3.13+)
+- uv
+- Kaggle API credentials
 
-### Feature Importance
+### Installation
 
-Mean decrease in impurity; ± indicates variability across 20 random forest seeds trained on the same data (n = 1,092).
+1. Clone the repository:
 
-| Feature | Importance (mean ± std) | Status |
-|---|---|---|
-| BMI | 0.0563 ± 0.0116 | Reliable |
-| Age | 0.0482 ± 0.0156 | Reliable |
-| Respiratory zero-crossing rate | 0.0431 ± 0.0122 | Marginal |
-| All other 72 features | ≤ 0.0431, std ≈ mean | Unreliable |
+   ```bash
+   git clone https://github.com/s-ray9/sleep-cognition-ml.git
+   cd sleep-cognition-ml
+   ```
 
-## Development
+2. Install dependencies:
 
-### Local Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/s-ray9/sleep-cognition-ml
-cd sleep-cognition-ml
-
-# Install dependencies
-uv sync
-```
+   ```bash
+   uv sync
+   ```
 
 ### Usage
 
-This project uses overnight polysomnography recordings from the [George B. Moody PhysioNet Challenge 2026](https://physionetchallenges.org/2026/) dataset.
+#### Data preparation
 
-#### Data Preparation
+Download the training cohort of 79 positive and 1,013 negative patients:
 
 ```bash
-# Download the imbalanced training cohort (79 True, 934 False)
-uv run python download_patients.py --split training --true 79 --false 934
+uv run python download_patients.py --split training --true 79 --false 1013
+```
 
-# Sort training downloads into the Challenge-standard directory structure
+Sort the training downloads into the directory structure the Challenge expects:
+
+```bash
 uv run python sort_downloads.py data/training
+```
 
-# Download a balanced holdout cohort (5 True, 5 False)
+Download the holdout cohort of 5 positive and 5 negative patients:
+
+```bash
 uv run python download_patients.py --split holdout --true 5 --false 5
+```
 
-# Sort holdout downloads into the same directory structure
+Sort the holdout downloads into the same structure:
+
+```bash
 uv run python sort_downloads.py data/holdout
 ```
 
-#### Model Training
+#### Model training
+
+Train the model, a 200-tree random forest with balanced class weights:
 
 ```bash
-# Train the model (200-tree random forest, class-weighted for imbalance)
 uv run python train_model.py -d data/training -m model -v
 ```
 
-*Note: this trains a single model via the official Challenge pipeline. This repository implements separate scripts for cross-validated evaluation, multi-seed feature-importance analysis, and cross-architecture comparison.*
+This command trains a single model through the official Challenge pipeline. The analysis scripts below produce the cross-validated and multi-seed results. Each of them reads its settings from constants at the top of the file, so none of them take command-line arguments.
 
-## Project Structure
+#### Analysis
 
-### Challenge Code
+Verify that no patient contributes sessions to more than one split:
+
+```bash
+uv run python check_patient_overlap.py
+```
+
+Compute five-fold cross-validated AUROC on all 75 features:
+
+```bash
+uv run python evaluate_methodology.py
+```
+
+Compare cross-validated AUROC across feature subset sizes:
+
+```bash
+uv run python compare_feature_subsets.py
+```
+
+Compare performance and feature importance across the three model architectures:
+
+```bash
+uv run python compare_models.py
+```
+
+Compute feature importance from a single trained model:
+
+```bash
+uv run python rank_features.py
+```
+
+Average feature importance across 20 random seeds:
+
+```bash
+uv run python rank_features_multiseed.py
+```
+
+## Project structure
+
+### Challenge code
 
 #### Unmodified
 
-| File | Purpose | Arguments |
-|---|---|---|
-| `evaluate_model.py` | Scores predictions against labels | `-d <labels_file> -o <predictions_file> -p <prevalence_file>` |
-| `helper_code.py` | Shared utilities used by the other files in this section | — |
-| `run_model.py` | Runs a trained model on new data | `-d <data_folder> -m <model_folder> -o <output_folder> -v` |
-| `train_model.py` | Trains a model | `-d <data_folder> -m <model_folder> -v` |
+| File                | Purpose                                                           | Arguments                                                     |
+| ------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------- |
+| `evaluate_model.py` | Scores predictions against labels                                 | `-d <labels_file> -o <predictions_file> -p <prevalence_file>` |
+| `helper_code.py`    | Provides shared utilities used by the other files in this section | n/a                                                           |
+| `run_model.py`      | Runs a trained model on new data                                  | `-d <data_folder> -m <model_folder> -o <output_folder> -v`    |
+| `train_model.py`    | Trains a model                                                    | `-d <data_folder> -m <model_folder> -v`                       |
 
 #### Modified
 
-| File | Purpose | Arguments |
-|---|---|---|
-| `team_code.py` | Feature extraction and model definition | — |
+| File           | Purpose                                                                     | Arguments |
+| -------------- | --------------------------------------------------------------------------- | --------- |
+| `team_code.py` | Defines feature extraction, including heart rate variability, and the model | n/a       |
 
-### Original Code
+### Original code
 
-Scripts use constants defined at the top of each file in place of command-line arguments where none are listed.
+| File                         | Purpose                                                                                      | Arguments                                                               |
+| ---------------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `check_patient_overlap.py`   | Verifies that no patient contributes sessions to more than one split                         | n/a                                                                     |
+| `compare_feature_subsets.py` | Computes cross-validated AUROC for each feature subset size                                  | n/a                                                                     |
+| `compare_models.py`          | Compares cross-validated performance and feature importance across three model architectures | n/a                                                                     |
+| `download_patients.py`       | Downloads patient data from Kaggle                                                           | `--split <training\|holdout> --true <n> --false <n> [--data-dir <dir>]` |
+| `evaluate_methodology.py`    | Computes five-fold cross-validated AUROC on all 75 features                                  | n/a                                                                     |
+| `experiment_utils.py`        | Provides shared feature definitions and dataset loading                                      | n/a                                                                     |
+| `rank_features.py`           | Computes feature importance from a single trained model                                      | n/a                                                                     |
+| `rank_features_multiseed.py` | Averages feature importance across 20 random seeds                                           | n/a                                                                     |
+| `sort_downloads.py`          | Sorts downloaded files into the Challenge-standard directory structure                       | `<target_directory>`                                                    |
 
-| File | Purpose | Arguments |
-|---|---|---|
-| `check_patient_overlap.py` | Verifies no patient contributes multiple sessions across splits | — |
-| `compare_feature_subsets.py` | Cross-validated performance by feature subset size | — |
-| `compare_models.py` | Cross-validated performance and importance across three model architectures | — |
-| `download_patients.py` | Downloads patient data from Kaggle | `--split <training\|holdout> --true <n> --false <n> [--data-dir <dir>]` |
-| `evaluate_methodology.py` | 5-fold cross-validated AUROC on the full feature set | — |
-| `experiment_utils.py` | Shared feature definitions and dataset loading | — |
-| `rank_features.py` | Single-run feature importance from a trained model | — |
-| `rank_features_multiseed.py` | Feature importance averaged across 20 random seeds | — |
-| `sort_downloads.py` | Sorts downloaded files into the Challenge-standard directory structure | `<target_directory>` |
+## Acknowledgements
+
+This is independent research and not a Challenge submission. It builds on the example code and data of the [George B. Moody PhysioNet Challenge 2026](https://moody-challenge.physionet.org/2026).
+
+### Data attribution
+
+The underlying physiology data used in this project comes from the Human Sleep Project (version 2.0). If you use or adapt this code, please attribute the primary dataset:
+
+> Sun, H., et al. (2023). The Human Sleep Project (version 2.0). _Brain Data Science Platform_. https://doi.org/10.60508/qjbv-hg78.
+
+For the complete formal reference list (including the official 2026 Challenge overview and baseline CAISR algorithm papers), see [REPORT.md](REPORT.md).
 
 ## License
 
-Distributed under the **MIT License**. See [LICENSE](LICENSE) for more information.
+Distributed under the MIT License. See [LICENSE] for more information.
 
-Code retained from the Challenge repository (see [Challenge Code](#challenge-code)) remains under its original **BSD 3-Clause License**. See [PHYSIONET-CHALLENGE-LICENSE](THIRD-PARTY-LICENSES/PHYSIONET-CHALLENGE-LICENSE) for more information.
+Code retained from the Challenge repository (see [Challenge code](#challenge-code)) remains under its original BSD 3-Clause License. See [PHYSIONET-CHALLENGE-LICENSE](THIRD-PARTY-LICENSES/PHYSIONET-CHALLENGE-LICENSE) for more information.
+
+[banner]: assets/banner.png
+[license]: LICENSE
+[demo]: https://huggingface.co/spaces/s-ray9/sleep-cognition-ml
+[demo-badge]: https://img.shields.io/badge/Demo-%F0%9F%A4%97%20Hugging%20Face-blue
+[license-badge]: https://img.shields.io/github/license/s-ray9/sleep-cognition-ml?color=blue&label=License&logo=opensourceinitiative&logoColor=white
+[python-badge]: https://img.shields.io/badge/Python-3.13-ffd43b?logo=python&logoColor=white&labelColor=3776ab
+[numpy-badge]: https://img.shields.io/badge/NumPy-4d77cf?logo=numpy&logoColor=white
+[pandas-badge]: https://img.shields.io/badge/pandas-15045c?logo=pandas&logoColor=white
+[scipy-badge]: https://img.shields.io/badge/SciPy-3776ab?logo=scipy&logoColor=whit
+[scikit-learn-badge]: https://img.shields.io/badge/scikit--learn-f7931e?logo=scikit-learn&logoColor=white
+[uv-badge]: https://img.shields.io/badge/uv-de5fe9?logo=uv&logoColor=white
