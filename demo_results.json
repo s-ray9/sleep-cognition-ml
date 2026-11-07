@@ -1,0 +1,80 @@
+{
+  "cohorts": [
+    {
+      "name": "Baseline (n=40)",
+      "configurations": [
+        {"name": "Unmodified example model", "model": "Random forest (12 trees)", "auroc": "0.504 (holdout)"}
+      ]
+    },
+    {
+      "name": "Small cohort (n=164)",
+      "configurations": [
+        {"name": "All 75 features", "model": "Random forest", "auroc": "0.737 ± 0.082 (5-fold cross-validated)"},
+        {"name": "Top 2 features (age, BMI)", "model": "Random forest", "auroc": "0.719 ± 0.045 (5-fold cross-validated)"},
+        {"name": "Top 10 features", "model": "Random forest", "auroc": "0.801 ± 0.070 (5-fold cross-validated)"},
+        {"name": "Top 20 features", "model": "Random forest", "auroc": "0.804 ± 0.067 (5-fold cross-validated)"},
+        {
+          "name": "Feature importance, 20 seeds",
+          "model": "Random forest (12 trees, leaf-capped)",
+          "auroc": "Not reported for this view",
+          "importance_label": "Mean decrease in impurity, top 10 of 75 features",
+          "importance": [
+            ["Age", 0.0674, 0.0253],
+            ["BMI", 0.0529, 0.0254],
+            ["Limb movement index", 0.0247, 0.0148],
+            ["Predicted arousal probability", 0.0242, 0.0116],
+            ["HRV RMSSD", 0.0215, 0.0126],
+            ["Chin mean absolute value", 0.0207, 0.0117],
+            ["Arousal index", 0.0204, 0.0133],
+            ["EEG zero-crossing rate", 0.0203, 0.0088],
+            ["Chin signal variance", 0.0203, 0.0118],
+            ["Predicted wake probability", 0.0201, 0.0109]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Full training cohort (n=1,092)",
+      "configurations": [
+        {"name": "Random forest, top 10 features", "model": "Random forest", "auroc": "0.788 ± 0.041 (5-fold cross-validated)"},
+        {"name": "Gradient boosting, top 10 features", "model": "Gradient boosting", "auroc": "0.790 ± 0.024 (5-fold cross-validated)"},
+        {
+          "name": "Logistic regression, top 10 features",
+          "model": "Logistic regression",
+          "auroc": "0.800 ± 0.044 (5-fold cross-validated)",
+          "importance_label": "Absolute standardized coefficient",
+          "importance": [
+            ["Age", 0.9565],
+            ["Chin signal variance", 0.7836],
+            ["Chin mean absolute value", 0.7809],
+            ["Predicted arousal probability", 0.7666],
+            ["Arousal index", 0.3791],
+            ["HRV RMSSD", 0.2695],
+            ["Predicted wake probability", 0.2069],
+            ["BMI", 0.1937],
+            ["EEG zero-crossing rate", 0.1609],
+            ["Limb movement index", 0.1196]
+          ]
+        },
+        {
+          "name": "Feature importance, 20 seeds",
+          "model": "Random forest (12 trees, leaf-capped)",
+          "auroc": "Not reported for this view",
+          "importance_label": "Mean decrease in impurity, top 10 of 75 features",
+          "importance": [
+            ["BMI", 0.0563, 0.0116],
+            ["Age", 0.0482, 0.0156],
+            ["Respiratory zero-crossing rate", 0.0431, 0.0122],
+            ["Predicted arousal probability", 0.0220, 0.0074],
+            ["Respiratory mean absolute value", 0.0211, 0.0069],
+            ["Arousal index", 0.0205, 0.0068],
+            ["EOG zero-crossing rate", 0.0203, 0.0094],
+            ["Chin mean absolute value", 0.0202, 0.0083],
+            ["Chin zero-crossing rate", 0.0196, 0.0091],
+            ["Stage N2 percentage", 0.0184, 0.0069]
+          ]
+        }
+      ]
+    }
+  ]
+}

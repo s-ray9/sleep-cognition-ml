@@ -1,10 +1,12 @@
 ![s_ray9: systems developer, game developer.][banner]
 
-_Banner background photo by [Conny Schneider](https://unsplash.com/@choys_) on [Unsplash](https://unsplash.com), modified for this project._
+*Banner background photo by [Conny Schneider](https://unsplash.com/@choys_) on [Unsplash](https://unsplash.com), modified for this project.*
 
 # Sleep Cognition ML
 
-[![Demo][demo-badge]][demo] [![License][license-badge]][license]
+<!-- [![Demo][demo-badge]][demo] -->
+[![Latest Release][latest-release-badge]][latest-release]
+[![License][license-badge]][license]
 
 Independent research project testing how reliable feature-importance rankings are in machine learning models that predict cognitive impairment from sleep recordings.
 
@@ -164,7 +166,9 @@ The underlying physiology data used in this project comes from the Human Sleep P
 
 > Sun, H., et al. (2023). The Human Sleep Project (version 2.0). _Brain Data Science Platform_. https://doi.org/10.60508/qjbv-hg78.
 
+<!--
 For the complete formal reference list (including the official 2026 Challenge overview and baseline CAISR algorithm papers), see [REPORT.md](REPORT.md).
+-->
 
 ## License
 
@@ -174,8 +178,12 @@ Code retained from the Challenge repository (see [Challenge code](#challenge-cod
 
 [banner]: assets/banner.png
 [license]: LICENSE
+<!--
 [demo]: https://huggingface.co/spaces/s-ray9/sleep-cognition-ml
 [demo-badge]: https://img.shields.io/badge/Demo-%F0%9F%A4%97%20Hugging%20Face-blue
+-->
+[latest-release]: https://github.com/s-ray9/sleep-cognition-ml/releases
+[latest-release-badge]: https://img.shields.io/github/v/release/s-ray9/sleep-cognition-ml
 [license-badge]: https://img.shields.io/github/license/s-ray9/sleep-cognition-ml?color=blue&label=License&logo=opensourceinitiative&logoColor=white
 [python-badge]: https://img.shields.io/badge/Python-3.13-ffd43b?logo=python&logoColor=white&labelColor=3776ab
 [numpy-badge]: https://img.shields.io/badge/NumPy-4d77cf?logo=numpy&logoColor=white
