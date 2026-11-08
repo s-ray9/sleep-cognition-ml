@@ -23,6 +23,12 @@ Independent research project testing how reliable feature-importance rankings ar
 
 This project tests whether feature-importance rankings from machine learning models remain reliable on small, imbalanced clinical datasets. It uses the 2026 PhysioNet Challenge sleep dataset, which contains 1,103 patients and 84 positive cases, as a test case. A set of ten features predicted cognitive impairment consistently across three model types, with cross-validated AUROC between 0.79 and 0.80. The rankings of individual features changed with sample size and model type, and only age was consistently important.
 
+## Try it
+
+Find the latest demo release [here](https://github.com/s-ray9/sleep-cognition-ml/releases) and follow the instructions.
+
+https://github.com/user-attachments/assets/f6f938b7-0109-4abf-b44b-35f2fb838197
+
 ## Getting started
 
 ### Prerequisites
