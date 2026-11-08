@@ -25,6 +25,8 @@ This project tests whether feature-importance rankings from machine learning mod
 
 ## Try it
 
+This standalone desktop demo lets you explore model performance across datasets and configurations, including AUROC results and feature-importance rankings. It also includes an interactive age-and-BMI prediction using the logistic regression model.
+
 Find the latest demo release [here](https://github.com/s-ray9/sleep-cognition-ml/releases) and follow the instructions.
 
 <img width="1017" height="905" alt="image" src="https://github.com/user-attachments/assets/e91b6d09-d51f-408d-b090-4b78ff30519a" />
